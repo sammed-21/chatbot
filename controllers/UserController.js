@@ -1,5 +1,5 @@
 const User = require("../models/User");
-
+const Chatbot = require("../models/Chatbot")
 const UserController = {
   // @Desc get all users
   // @route GET /users
@@ -30,12 +30,12 @@ const UserController = {
   },
 
   // @Desc get users by id
-  // @route get /users/:id
+  // @route get /users/:userId
   // @public
 
   getUserById: async (req, res) => {
     try {
-      const userId = req.params.id;
+      const userId = req.params.userId;
       const user = await User.findByPk(userId);
 
       if (!user) {
@@ -48,52 +48,98 @@ const UserController = {
   },
 
   // @Desc PUT users by id
-  // @route PUT /users/:id
+  // @route PUT /users/:userId
   // @public
-
+  
   updateUserById: async (req, res) => {
-    try {
-      const userId = req.params.id;
-      const reqs = req.body;
-
-      //   const user = await User.findByPk(userId);
-      const user = await User.findByPk(userId);
-      if (!user) {
-        res.status(400).json({ message: "User not found" });
-      }
-      user.username = reqs.username;
-      user.email = reqs.email;
-      user.save();
-
-      //   if (!user) {
-      //     return res.status(404).json({ message: "User not found" });
+      try {
+          const userId = req.params.userId;
+          const reqs = req.body;
+          
+          //   const user = await User.findByPk(userId);
+          const user = await User.findByPk(userId);
+          if (!user) {
+              res.status(400).json({ message: "User not found" });
+            }
+            user.username = reqs.username;
+            user.email = reqs.email;
+            user.save();
+            
+            //   if (!user) {
+                //     return res.status(404).json({ message: "User not found" });
       //   }
       return res.status(200).json(user);
     } catch (error) {
-      res.status(500).json({ message: "Error fetching users" });
+        res.status(500).json({ message: "Error fetching users" });
     }
-  },
-  findUserByIdAndDelete: async (req, res) => {
+},
+// @Desc delete users by id
+// @route delete /users/:userId
+// @public
+findUserByIdAndDelete: async (req, res) => {
     try {
-      const userId = req.params.id;
-  
-
+        const userId = req.params.userId;
+        
         const user = await User.findByPk(userId);
-      
-      if (!user) {
-        res.status(400).json({ message: "User not found" });
-      }
-      
+        
+        if (!user) {
+            res.status(400).json({ message: "User not found" });
+        }
+        
         user.destroy();
-
-      //   if (!user) {
-      //     return res.status(404).json({ message: "User not found" });
-      //   }
-      return res.status(200).json({message:"user is been deleted"});
+        
+        
+        return res.status(200).json({ message: "user is been deleted" });
     } catch (error) {
-      res.status(500).json({ message: "Error fetching users" });
+        res.status(500).json({ message: "Error fetching users" });
     }
-  },
+    },
+    // @Desc delete users by id
+    // @route delete /users/:userId
+    // @public
+    createChatbot : async (req, res) => {
+        const { userId} = req.params;
+        const { name, description } = req.body;
+    
+        try {
+                const user = await User.findByPk(userId);
+    
+                if (!user) {
+                    return res.status(404).json({ error: 'User not found' });
+                }
+    
+                const chatbot = await Chatbot.create({
+                    name,
+                    description,
+                    userId
+                });
+            console.log(chatbot)
+    
+            return res.status(201).json(chatbot);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Server error' });
+        }
+    },
+     listUserChatbots : async (req, res) => {
+        const { userId } = req.params;
+    
+        try {
+            const user = await User.findByPk(userId, {
+                include: Chatbot
+            });
+    
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+    
+            return res.status(200).json(user.chatbots);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Server error' });
+        }
+    }
+    
 };
 
 module.exports = UserController;
