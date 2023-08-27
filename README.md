@@ -1,4 +1,4 @@
-Chatbot express and sqlite# Express App Interview Assignment
+Chatbot express and sqlite 
 
 This repository contains a RESTful API developed using the Express.js framework, backed by SQLite and Sequelize ORM. The API serves as the backend for a platform where users can create chatbots that have conversations with end users.
 
@@ -22,13 +22,25 @@ This repository contains a RESTful API developed using the Express.js framework,
 - SQLite is used as the database.
 - Sequelize is used as the ORM.
  
- ## Installation
+ 
+## Installation
 
-To install the necessary dependencies for this project, use the following command:
+1. Clone the repository:
+ 
+git clone https://github.com/sammed-21/chatbot-platform.git
 
-```bash
-npm install body-parser@^1.20.2 cors@^2.8.5 express@^4.18.2 sequelize@^6.32.1 sqlite3@^5.1.6
-```
+## Installation
+
+1. Clone the repository: `git clone https://github.com/sammed-21/chatbot.git`
+2. Navigate to the project directory: `cd chatbot`
+3. Install dependencies: `npm install`
+
+## Running the Server
+
+Run the Express server using the following command:
+
+`nodemon app.js` 
+ 
 ## Endpoints
 
 ### Users
@@ -71,22 +83,4 @@ npm install body-parser@^1.20.2 cors@^2.8.5 express@^4.18.2 sequelize@^6.32.1 sq
 | /endusers/:endUserId    | Update end user details        | PUT    |
 | /endusers/:endUserId    | Delete an end user             | DELETE |
 
-## Installation
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/sammed-21/chatbot-platform.git
-
-## Installation
-
-1. Clone the repository: `git clone https://github.com/yourusername/chatbot-platform.git`
-2. Navigate to the project directory: `cd chatbot-platform`
-3. Install dependencies: `npm install`
-
-## Running the Server
-
-Run the Express server using the following command:
-
-```bash
-npm start
