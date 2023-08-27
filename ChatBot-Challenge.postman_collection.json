@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"backend\",\r\n    \"email\":\"backend@gmail.com\",\r\n    \"password\":\"backend\"\r\n}"
+							"raw": "{\r\n    \"username\":\"second\",\r\n    \"email\":\"second@gmail.com\",\r\n    \"password\":\"second\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5001/users",
@@ -40,6 +40,9 @@
 				},
 				{
 					"name": "GetAllUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -49,6 +52,10 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:5001/users/",
 							"protocol": "http",
@@ -68,7 +75,25 @@
 					"name": "userById",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5001/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"users",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -79,7 +104,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\"username\": \"backend\",\r\n            \"email\": \"backend@gmail.com\",\r\n            \"password\": \"backend\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -104,8 +129,20 @@
 				{
 					"name": "DeleteUser",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/users/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"users",
+								"3"
+							]
+						}
 					},
 					"response": []
 				},
@@ -116,7 +153,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"test chatbot\",\r\n    \"description\":\"hello this is the test the chatbot api\"\r\n}",
+							"raw": "{\r\n    \"name\":\"this is the 2th chatbot\",\r\n    \"description\":\"2 chatbot this is the test the chatbot api\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -124,7 +161,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5001/users/4/chatbots",
+							"raw": "http://localhost:5001/users/1/chatbots",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,7 +169,7 @@
 							"port": "5001",
 							"path": [
 								"users",
-								"4",
+								"1",
 								"chatbots"
 							]
 						}
@@ -143,7 +180,20 @@
 					"name": "getAllUserChatbot",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/users/1/chatbots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"users",
+								"1",
+								"chatbots"
+							]
+						}
 					},
 					"response": []
 				}
@@ -156,23 +206,68 @@
 					"name": "get chatbot by id",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/chatbots/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"chatbots",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "updatechatbot",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"change to update from test\",\r\n    \"description\":\"update description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/chatbots/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"chatbots",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "deleteChatbot",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/chatbots/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"chatbots",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -183,7 +278,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"message\":\"hi start coversartion with chatbot\",\r\n    \"status\":\"active\"\r\n}",
+							"raw": "{\r\n    \"message\":\"hi above eidit to 2 chatbot  with chatbot\",\r\n    \"status\":\"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -191,7 +286,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5001/chatbots/2/conversations",
+							"raw": "http://localhost:5001/chatbots/1/conversations",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -199,7 +294,7 @@
 							"port": "5001",
 							"path": [
 								"chatbots",
-								"2",
+								"1",
 								"conversations"
 							]
 						}
@@ -219,7 +314,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:5001/chatbots/2/conversations",
+							"raw": "http://localhost:5001/chatbots/1/conversations",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -227,7 +322,7 @@
 							"port": "5001",
 							"path": [
 								"chatbots",
-								"2",
+								"1",
 								"conversations"
 							]
 						}
@@ -243,23 +338,68 @@
 					"name": "getConvoById",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/conversations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"conversations",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "updateConvoById",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\":\"hi 2 to  3  with chatbot\",\r\n    \"status\":\"inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/conversations/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"conversations",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "deleteConversatation",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/conversations/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"conversations",
+								"2"
+							]
+						}
 					},
 					"response": []
 				}
